@@ -1,0 +1,49 @@
+<?php $admin    = $this->session->get("admin"); ?>
+<?php $language = "en" ?>
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="<?php echo $this->url->get(); ?>"><?php echo $this->config->web_name; ?></a>
+
+        <ul class="nav navbar-nav visible-xs-block">
+            <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav">
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+        </ul>
+
+        <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown language-switch">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="<?php echo $this->url->getStatic("img/flags/" . $language . ".png"); ?>" class="position-left" alt=""><?php echo ucfirst($language); ?><span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <?php
+                    foreach ($this->config->languages->list as $lang => $locale)
+                    {
+                        ?>
+                        <li><a  href="<?php echo $this->url->get($this->module_config_user->main_route . "/language/change?lang=" . $lang . "&url=" . $this->router->getRewriteUri()); ?>"><img src="<?php echo $this->url->getStatic("img/flags/" . $lang . ".png"); ?>" alt=""> <?php echo ucfirst($lang); ?></a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="<?php echo $this->url->getStatic("img/temp/placeholder.jpg"); ?>" alt="">
+                    <span><?php echo $admin["mv_nickname"] ?></span>
+                    <i class="caret"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="<?php echo $this->url->get($this->module_config->main_route."/access/logout"); ?>"><i class="icon-switch2"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

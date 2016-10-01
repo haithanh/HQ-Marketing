@@ -1,0 +1,57 @@
+<div id="member-panel" class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title"><?php $this->language->_e("List Channels"); ?></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form action="" onsubmit="return false;" class="table-search-form form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Name</label>
+                <div class="col-lg-4">
+                    <input name="member_data" id="member_data" type="text" placeholder="Name" class="form-control">
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-primary filter-table" type="button">Search <i class="icon-search4 position-right"></i></button>
+                </div>
+            </div>
+        </form>
+        <button href="<?php echo $this->url->get($this->module_config->main_route . "/channel/edit-channel"); ?>" class="btn btn-success btn-labeled btn-new-content" type="button" data-target="#modal_edit_member" data-toggle="modal"><b><i class="icon-plus3"></i></b> <?php $this->language->_e("Add new"); ?></button>
+    </div>
+    <table class="table datatable-basic table-bordered table-striped table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal_edit_member">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h5 class="modal-title">Modal with remote source</h5>
+            </div>
+
+            <div class="modal-body"></div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-link" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<?php $admin = $this->session->get("admin"); ?>
+<div class="sidebar sidebar-main">
+    <div class="sidebar-content">
+
+        <!-- User menu -->
+        <div class="sidebar-user">
+            <div class="category-content">
+                <div class="media">
+                    <a class="media-left" href="#"><img alt="" class="img-circle img-sm" src="<?php echo $this->url->getStatic("img/temp/placeholder.jpg"); ?>"></a>
+                    <div class="media-body">
+                        <span class="media-heading text-semibold"><?php echo $admin["mv_nickname"] ?></span>
+                    </div>
+
+                    <div class="media-right media-middle">
+                        <ul class="icons-list">
+                            <li>
+                                <a href="#"><i class="icon-cog3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /user menu -->
+
+
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+
+                    <!-- Main -->
+                    <li class="navigation-header">
+                        <span><?php $this->language->_e("Main") ?></span> 
+                        <i title="" class="icon-menu" data-original-title="Main pages"></i>
+                    </li>
+                    <li><a href="<?php echo $this->url->get($this->module_config->main_route); ?>"><i class="icon-home4"></i> <span><?php $this->language->_e("Dashboard") ?></span></a></li>
+                    <?php
+                    if (\HqEngine\HqTool\HqUtil::checkPermission("admin", $admin["mv_permission"]))
+                    {
+                        ?>
+                        <li class="navigation-header"><span><?php $this->language->_e("Admin") ?></span> <i data-original-title="Forms" class="icon-menu" title=""></i></li>
+                        <li>
+                            <a href="#" class="has-ul"><i class="icon-user"></i> <span><?php $this->language->_e("Admin Management") ?></span></a>
+                            <ul class="hidden-ul">
+                                <li><a href="<?php echo $this->url->get($this->module_config->main_route . "/member-vip") ?>"><?php $this->language->_e("List Admin") ?></a></li>
+                            </ul>
+                        </li>
+                    <?php } ?>
+                    <li class="navigation-header"><span><?php $this->language->_e("Marketing") ?></span> <i data-original-title="Forms" class="icon-menu" title=""></i></li>
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-people"></i> <span><?php $this->language->_e("Partner Management") ?></span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="<?php echo $this->url->get($this->module_config->main_route . "/partner") ?>"><?php $this->language->_e("List Partners") ?></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-tree5"></i> <span><?php $this->language->_e("Channels Management") ?></span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="<?php echo $this->url->get($this->module_config->main_route . "/channel") ?>"><?php $this->language->_e("List Channels") ?></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-brain"></i> <span><?php $this->language->_e("Campaigns Management") ?></span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="<?php echo $this->url->get($this->module_config->main_route . "/campaign") ?>"><?php $this->language->_e("List Campaigns") ?></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-link"></i> <span><?php $this->language->_e("Links Management") ?></span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="<?php echo $this->url->get($this->module_config->main_route . "/link") ?>"><?php $this->language->_e("History Links") ?></a></li>
+                            <li><a href="<?php echo $this->url->get($this->module_config->main_route . "/link/list") ?>"><?php $this->language->_e("List Links") ?></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+
+    </div>
+</div>

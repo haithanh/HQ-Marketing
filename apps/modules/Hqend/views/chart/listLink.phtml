@@ -1,0 +1,76 @@
+<!--<script type="text/javascript">-->
+    $(function () {
+        $('#chart-click-content').highcharts({
+            title: {
+                text: 'Total Links'
+            },
+            xAxis: {
+                categories: [<?php echo $data_click["date_chart"]; ?>]
+            },
+            series: [{
+                    type: 'spline',
+                    name: 'Clicks',
+                    data: [<?php echo $data_click["data_chart"]; ?>],
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                {
+                    type: 'spline',
+                    name: 'Unique Clicks',
+                    data: [<?php echo $data_unique_click["data_chart"]; ?>],
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                {
+                    type: 'spline',
+                    name: 'View',
+                    data: [<?php echo $data_view["data_chart"]; ?>],
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                {type: 'spline',
+                    name: 'Revenue',
+                    data: [<?php echo $data_revenue["data_chart"]; ?>],
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                {type: 'spline',
+                    name: 'Registers',
+                    data: [<?php echo $data_register["data_chart"]; ?>],
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                {
+                    type: 'pie',
+                    name: 'Total',
+                    data: [{
+                            name: 'Total Clicks',
+                            y:<?php echo $data_click["total"]; ?>
+                        }, {
+                            name: 'Total Unique Clicks',
+                            y:<?php echo $data_unique_click["total"]; ?>
+                        }, {
+                            name: 'Total Views',
+                            y:<?php echo $data_view["total"]; ?>
+                        }, {
+                            name: 'Total Revenue',
+                            y:<?php echo $data_revenue["total"]; ?>
+                        }, {
+                            name: 'Total Registers',
+                            y:<?php echo $data_register["total"]; ?>
+                        }],
+                    center: ["95%", 0],
+                    size: 100,
+                    showInLegend: false,
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+        });
+    });
+<!--</script>-->

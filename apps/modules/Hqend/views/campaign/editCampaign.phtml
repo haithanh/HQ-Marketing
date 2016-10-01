@@ -1,0 +1,40 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h5 class="modal-title"><?php $this->language->_e("Add/Edit Campaign") ?></h5>
+</div>
+
+<form id="member-form" class="form-horizontal" onsubmit="formSubmit();
+        return false;" action="#">
+          <?php
+          if (isset($data["cam_id"]))
+          {
+              ?>
+        <input type="hidden" name="data[cam_id]" value="<?php echo $data["cam_id"]; ?>" />
+        <?php
+    }
+    ?>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Name"); ?></label>
+            <label class="control-label col-sm-4">    <input placeholder="Enter Campaign Name" require="true" name="data[cam_name]" value="<?php
+                if (isset($data["cam_name"]))
+                {
+                    echo $data["cam_name"];
+                }
+                ?>"  class="form-control" type="text"></label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal"><?php $this->language->_e("Close") ?></button>
+        <button type="submit" class="btn btn-primary"><?php $this->language->_e("Save") ?></button>
+    </div>
+</form>
+<script>
+    function formSubmit()
+    {
+        HQMain.ajax(rootUrl + "campaign/save-campaign", $("#member-form").serialize());
+        return false;
+    }
+
+</script>

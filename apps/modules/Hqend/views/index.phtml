@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php $this->tag->appendTitle($this->config->back_name); ?>
+        <?php echo $this->tag->getTitle(); ?>
+        <!-- CSS -->
+        <?php $this->assets->collection('core-css')->addCss("http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900", false); ?>
+        <?php $this->assets->collection('core-css')->addCss("public/icons/icomoon/styles.css"); ?>
+        <?php $this->assets->collection('core-css')->addCss("css/lib/boostrap/bootstrap.min.css"); ?>
+        <?php $this->assets->collection('core-css')->addCss("css/main/admin/core.min.css"); ?>
+        <?php $this->assets->collection('core-css')->addCss("css/main/admin/components.min.css"); ?>
+        <?php $this->assets->collection('core-css')->addCss("css/main/admin/colors.min.css"); ?>
+        <?php $this->assets->outputCss('core-css'); ?>
+        <!-- CSS -->
+
+        <?php $this->partial("layouts/sub/js_language"); ?>
+        <!-- Core JS files -->
+        <?php $this->assets->collection('core-js')->addJs("js/lib/plugins/loader/pace.min.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/lib/jquery.min.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/lib/bootstrap.min.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/lib/plugins/loader/blockui.min.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/lib/plugins/notify/pnotify.min.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/lib/plugins/notify/sweet_alert.min.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/main/admin/app.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/main/admin/hq_admin.js"); ?>
+        <?php $this->assets->collection('core-js')->addJs("js/main/hq_object.js"); ?>
+        <?php $this->assets->outputJs('core-js'); ?>
+        <!-- /core JS files -->
+
+        <!-- Header JS -->
+        <?php
+        if ($this->assets->collection('head')->count())
+        {
+            ?>
+            <?php $this->assets->outputJs('head'); ?>
+        <?php } ?>
+        <!-- /Header JS -->
+
+    </head>
+    <body>
+        <!-- Main navbar -->
+        <?php $this->holders->load("Hqend_Nav_Bar", "Index", "index"); ?>
+        <!-- /main navbar -->
+
+
+        <!-- Page container -->
+        <div class="page-container">
+
+            <!-- Page content -->
+            <div class="page-content">
+
+                <!-- Main sidebar -->
+                <?php $this->holders->load("Hqend_Side_Bar", "Index", "index"); ?>
+                <!-- /main sidebar -->
+
+
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <!-- Page header -->
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <div class="page-title">
+                                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span>    <?php
+                                    if (isset($current_page))
+                                    {
+                                        ?> - <?php echo $current_page; ?><?php } ?></h4>
+                            </div>
+                            <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
+                        <div class="breadcrumb-line breadcrumb-line-wide">
+                            <ul class="breadcrumb">
+                                <li><a href="<?php echo $this->url->get($this->module_config->main_route); ?>"><i class="<?php
+                                        if (isset($home_icon))
+                                        {
+                                            echo $home_icon;
+                                        }
+                                        else
+                                        {
+                                            ?>icon-home2 <?php } ?> position-left"></i> Home</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /page header -->
+                    <div class="content">
+                        <?php echo $this->getContent(); ?>
+                    </div>
+                    <!-- Footer -->
+                    <div class="footer text-muted">
+
+                    </div>
+                    <!-- /footer -->
+                </div>
+                <!-- /main content -->
+
+            </div>
+            <!-- /page content -->
+
+        </div>
+        <!-- /page container -->
+        <?php
+        if ($this->assets->collection('inline')->count())
+        {
+            ?>
+            <?php $this->assets->outputJs('inline'); ?>
+        <?php } ?>
+    </body>
+</html>
+

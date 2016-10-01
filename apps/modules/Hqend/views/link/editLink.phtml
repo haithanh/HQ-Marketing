@@ -1,0 +1,137 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h5 class="modal-title"><?php $this->language->_e("Add/Edit Link") ?></h5>
+</div>
+
+<form id="member-form" class="form-horizontal"  onsubmit="formSubmit();
+        return false;" action="#">
+          <?php
+          if (isset($data["link_id"]))
+          {
+              ?>
+        <input type="hidden" name="data[link_id]" value="<?php echo $data["link_id"]; ?>" />
+        <?php
+    }
+    ?>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?php echo $this->language->_e("Name"); ?></label>
+            <label class="control-label col-sm-5">    
+                <input placeholder="Enter Link Name" require="true" name="data[link_name]" value="<?php
+                if (isset($data["link_name"]))
+                {
+                    echo $data["link_name"];
+                }
+                ?>"  class="form-control" type="text">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?php echo $this->language->_e("Link Url"); ?></label>
+            <label class="control-label col-sm-5">    
+                <input placeholder="Enter Link Url" require="true" name="data[link_url]" value="<?php
+                if (isset($data["link_url"]))
+                {
+                    echo $data["link_url"];
+                }
+                ?>"  class="form-control" type="text">
+            </label>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?php echo $this->language->_e("Link Url"); ?></label>
+            <label class="control-label col-sm-5">    
+                <input value="1" type="checkbox" name="data[link_redirect]" class="switch" data-on-text="On" data-off-text="Off" <?php
+                if (isset($data["link_redirect"]) && $data["link_redirect"])
+                {
+                    echo 'checked="checked"';
+                }
+                ?>>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?php echo $this->language->_e("Partner"); ?></label>
+            <label class="control-label col-sm-5">    
+                <select name="data[link_partners]" class="select-search">
+                    <option value="">--- <?php $this->language->_e("Choose Partner"); ?> ---</option>
+                    <?php
+                    if (isset($partners) && !empty($partners))
+                    {
+                        foreach ($partners as $partner)
+                        {
+                            ?>
+                            <option <?php
+                            if (isset($data["link_partners"]) && $data["link_partners"] == $partner["pa_id"])
+                            {
+                                echo 'selected="selected"';
+                            }
+                            ?> value="<?php echo $partner["pa_id"]; ?>"> <?php echo $partner["pa_name"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?php echo $this->language->_e("Campaign"); ?></label>
+            <label class="control-label col-sm-5">    
+                <select name="data[link_campaigns]" class="select-search">
+                    <option value="">--- <?php $this->language->_e("Choose Campaign"); ?> ---</option>
+                    <?php
+                    if (isset($campaigns) && !empty($campaigns))
+                    {
+                        foreach ($campaigns as $campaign)
+                        {
+                            ?>
+                            <option <?php
+                            if (isset($data["link_campaigns"]) && $data["link_campaigns"] == $campaign["cam_id"])
+                            {
+                                echo 'selected="selected"';
+                            }
+                            ?> value="<?php echo $campaign["cam_id"]; ?>"> <?php echo $campaign["cam_name"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?php echo $this->language->_e("Channel"); ?></label>
+            <label class="control-label col-sm-5">    
+                <select name="data[link_channels]" class="select-search">
+                    <option value="">--- <?php $this->language->_e("Choose Channel"); ?> ---</option>
+                    <?php
+                    if (isset($channels) && !empty($channels))
+                    {
+                        foreach ($channels as $channel)
+                        {
+                            ?>
+                            <option <?php
+                            if (isset($data["link_channels"]) && $data["link_channels"] == $channel["channel_id"])
+                            {
+                                echo 'selected="selected"';
+                            }
+                            ?> value="<?php echo $channel["channel_id"]; ?>"> <?php echo $channel["channel_name"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                </select>
+            </label>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal"><?php $this->language->_e("Close") ?></button>
+        <button type="submit" class="btn btn-primary"><?php $this->language->_e("Save") ?></button>
+    </div>
+</form>
+<script>
+    function formSubmit()
+    {
+        HQMain.ajax(rootUrl + "link/save-link", $("#member-form").serialize());
+        return false;
+    }
+
+</script>

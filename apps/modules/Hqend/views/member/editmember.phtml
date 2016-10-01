@@ -1,0 +1,119 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h5 class="modal-title"><?php $this->language->_e("Edit Member") ?></h5>
+</div>
+
+<form id="member-form" class="form-horizontal" onsubmit="formSubmit();
+        return false;" action="#">
+    <?php
+    if (isset($data["mem_id"]))
+    {
+        ?>
+        <input type="hidden" name="data[mem_id]" value="<?php echo $data["mem_id"]; ?>" />
+        <?php
+    }
+    ?>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Username"); ?></label>
+            <label class="control-label col-sm-4"><?php
+                if (isset($data["mem_acc"]))
+                {
+                    echo $data["mem_acc"];
+                }
+                ?></label>
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Nickname"); ?></label>
+            <div class="col-sm-4">
+                <input placeholder="Enter Nickname" require="true" name="data[mem_nickname]" value="<?php
+                if (isset($data["mem_nickname"]))
+                {
+                    echo $data["mem_nickname"];
+                }
+                ?>"  class="form-control" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Password"); ?></label>
+            <div class="col-sm-4">
+                <input placeholder="Enter Password" name="data[mem_pa]"  class="form-control" type="password">
+            </div>
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Email"); ?></label>
+            <div class="col-sm-4">
+                <input placeholder="Enter Email" require="true" name="data[mem_email]" value="<?php
+                if (isset($data["mem_email"]))
+                {
+                    echo $data["mem_email"];
+                }
+                ?>"  class="form-control" type="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Active"); ?></label>
+            <div class="col-sm-4">
+                <select required="true" data-placeholder="<?php echo $this->language->_e("Select Active..."); ?>" class="select-icons">
+                    <?php
+                    if (isset($data["mem_active"]) && $data["mem_active"] == 1)
+                    {
+                        ?>
+                        <option selected="selected" value="1" data-icon="checkmark3"><?php echo $this->language->_e("Active"); ?></option>
+                        <option value="0" data-icon="cross2"><?php echo $this->language->_e("Disable"); ?></option>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <option value="1" data-icon="checkmark3"><?php echo $this->language->_e("Active"); ?></option>
+                        <option selected="selected" value="0" data-icon="cross2"><?php echo $this->language->_e("Disable"); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Coins"); ?></label>
+            <label class="control-label col-sm-4"><?php
+                if (isset($data["mem_gold"]))
+                {
+                    echo number_format($data["mem_gold"]);
+                }
+                ?></label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Created Date"); ?></label>
+            <label class="control-label col-sm-4"><?php
+                if (isset($data["mem_created_date"]))
+                {
+                    echo $data["mem_created_date"];
+                }
+                ?></label>
+            <label class="control-label col-sm-2"><?php echo $this->language->_e("Updated Date"); ?></label>
+            <label class="control-label col-sm-4"><?php
+                if (isset($data["mem_updated_date"]))
+                {
+                    echo $data["mem_updated_date"];
+                }
+                ?></label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal"><?php $this->language->_e("Close") ?></button>
+        <button type="submit" class="btn btn-primary"><?php $this->language->_e("Save") ?></button>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $(".select-icons").select2({
+            formatResult: iconFormat,
+            minimumResultsForSearch: "-1",
+            width: '100%',
+            formatSelection: iconFormat,
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+
+    });
+    function formSubmit()
+    {
+        HQMain.ajax(rootUrl + "member/savemember", $("#member-form").serialize());
+        return false;
+    }
+</script>

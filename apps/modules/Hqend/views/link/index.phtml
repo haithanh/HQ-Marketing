@@ -1,0 +1,161 @@
+<div id="search-panel" class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title"><?php $this->language->_e("Search Links"); ?></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form id="filter-form" action="" onsubmit="return false;" class="table-search-form form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-2 control-label"><?php $this->language->_e("Partner:"); ?></label>
+                <div class="col-lg-4">
+                    <select name="data_search[partner]" class="select-search">
+                        <option value="">--- <?php $this->language->_e("Choose Partner"); ?> ---</option>
+                        <?php
+                        if (isset($partners) && !empty($partners))
+                        {
+                            foreach ($partners as $partner)
+                            {
+                                ?>
+                                <option value="<?php echo $partner["pa_id"]; ?>"> <?php echo $partner["pa_name"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <label class="col-lg-2 control-label"><?php $this->language->_e("From Date:"); ?></label>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-calendar5"></i></span>
+                        <input type="text" value="" name="data_search[from_date]" class="form-control pickadate-selectors" placeholder="<?php $this->language->_e("Choose From Date"); ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label"><?php $this->language->_e("Campaign:"); ?></label>
+                <div class="col-lg-4">
+                    <select name="data_search[campaign]" class="select-search">
+                        <option value="">--- <?php $this->language->_e("Choose Campaign"); ?> ---</option>
+                        <?php
+                        if (isset($campaigns) && !empty($campaigns))
+                        {
+                            foreach ($campaigns as $campaign)
+                            {
+                                ?>
+                                <option value="<?php echo $campaign["cam_id"]; ?>"> <?php echo $campaign["cam_name"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <label class="col-lg-2 control-label"><?php $this->language->_e("To Date:"); ?></label>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-calendar5"></i></span>
+                        <input type="text" value="" name="data_search[to_date]" class="form-control pickadate-selectors" placeholder="<?php $this->language->_e("Choose To Date"); ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label"><?php $this->language->_e("Channel:"); ?></label>
+                <div class="col-lg-4">
+                    <select name="data_search[channel]" class="select-search">
+                        <option value="">--- <?php $this->language->_e("Choose Channel"); ?> ---</option>
+                        <?php
+                        if (isset($channels) && !empty($channels))
+                        {
+                            foreach ($channels as $channel)
+                            {
+                                ?>
+                                <option value="<?php echo $channel["channel_id"]; ?>"> <?php echo $channel["channel_name"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <button id="filter-button" type="button" class="btn btn-primary filter-table"><?php $this->language->_e("Search"); ?> <i class="icon-search4 position-right"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="chart-panel" class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title"><?php $this->language->_e("Link Charts"); ?></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div id="chart-click-content" class="chart">
+
+        </div>
+    </div>
+</div>
+<div id="list-panel" class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title"><?php $this->language->_e("List Links"); ?></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <button onclick="editLink();" class="btn btn-success btn-labeled btn-new-content" type="button"><b><i class="icon-plus3"></i></b> <?php $this->language->_e("Add new"); ?></button>
+        <table id="link-table" class="table datatable-basic table-bordered table-striped table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Clicks</th>
+                    <th class="text-center">Unique Clicks</th>
+                    <th class="text-center">Show</th>
+                    <th class="text-center">Register</th>
+                    <th class="text-center">Conversion</th>
+                    <th class="text-center">Unique Conversion</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_edit_member">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h5 class="modal-title">Modal with remote source</h5>
+            </div>
+
+            <div class="modal-body"></div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-link" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
